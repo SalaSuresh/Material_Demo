@@ -2,6 +2,8 @@ package com.syntax.material_demo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -11,11 +13,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,13 +35,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean mUserLearnedDrawer;
     private boolean mFromSavedInstanceState;
     private int mCurrentSelectedPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //test ----- START
-//        setUpToolbar();
+        setUpToolbar();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
 
         mUserLearnedDrawer = Boolean.valueOf(readSharedSetting(this, PREF_USER_LEARNED_DRAWER, "false"));
@@ -47,22 +52,21 @@ public class MainActivity extends AppCompatActivity {
             mFromSavedInstanceState = true;
         }
 
-        setUpNavDrawer();
+//        setUpNavDrawer();  //----- to customize the action bar
 
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mContentFrame = (FrameLayout) findViewById(R.id.nav_contentframe);
-
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 menuItem.setChecked(true);
                 switch (menuItem.getItemId()) {
-                    case R.id.navigation_item_1:
+                    case R.id.inbox:
                         Snackbar.make(mContentFrame, "Item One", Snackbar.LENGTH_SHORT).show();
                         mCurrentSelectedPosition = 0;
                         return true;
-                    case R.id.navigation_item_2:
+                    case R.id.starred:
                         Snackbar.make(mContentFrame, "Item Two", Snackbar.LENGTH_SHORT).show();
                         mCurrentSelectedPosition = 1;
                         return true;
@@ -71,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
         //test ----- END
 
     }
@@ -83,10 +89,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //to customize the action bar
     private void setUpNavDrawer() {
         if (mToolbar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            mToolbar.setNavigationIcon(R.drawable.profile_picture);
+            mToolbar.setNavigationIcon(R.drawable.ic_launcher);
             mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/navigation_item_1"
-            android:checked="true"
+            android:id="@+id/inbox"
+            android:checked="false"
             android:icon="@drawable/ic_launcher"
-            android:title="Item One" />
+            android:title="@string/app_name" />
+
         <item
-            android:id="@+id/navigation_item_2"
+            android:id="@+id/starred"
+            android:checked="false"
             android:icon="@drawable/ic_launcher"
-            android:title="Item Two" />
+            android:title="@string/app_name" />
+
+        <item
+            android:id="@+id/sent_mail"
+            android:checked="false"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/app_name" />
+
+        <item
+            android:id="@+id/drafts"
+            android:checked="false"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/app_name" />
+
+
+        <item
+            android:id="@+id/allmail"
+            android:checked="false"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/app_name" />
+        <item
+            android:id="@+id/trash"
+            android:checked="false"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/app_name" />
+        <item
+            android:id="@+id/spam"
+            android:checked="false"
+            android:icon="@drawable/ic_launcher"
+            android:title="@string/app_name" />
+
     </group>
 </menu>

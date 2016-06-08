@@ -23,92 +23,105 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
-    private DrawerLayout mDrawerLayout;
-    NavigationView mNavigationView;
-    FrameLayout mContentFrame;
 
-    private static final String PREFERENCES_FILE = "mymaterialapp_settings";
-    private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
-    private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
-
-    private boolean mUserLearnedDrawer;
-    private boolean mFromSavedInstanceState;
-    private int mCurrentSelectedPosition;
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e("test", "test Log added");
 
-        //test ----- START
-        setUpToolbar();
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
+        //Navigation Drawer ----- START
+        // Initializing Toolbar and setting it as the actionbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mUserLearnedDrawer = Boolean.valueOf(readSharedSetting(this, PREF_USER_LEARNED_DRAWER, "false"));
+        //Initializing NavigationView
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-        if (savedInstanceState != null) {
-            mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
-            mFromSavedInstanceState = true;
-        }
+        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-//        setUpNavDrawer();  //----- to customize the action bar
-
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mContentFrame = (FrameLayout) findViewById(R.id.nav_contentframe);
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                menuItem.setChecked(true);
-                switch (menuItem.getItemId()) {
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if(menuItem.isChecked()) menuItem.setChecked(false);
+                else menuItem.setChecked(true);
+
+                //Closing drawer on item click
+                drawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()){
+
+
+                    //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.inbox:
-                        Snackbar.make(mContentFrame, "Item One", Snackbar.LENGTH_SHORT).show();
-                        mCurrentSelectedPosition = 0;
+                        Toast.makeText(getApplicationContext(),"Inbox Selected",Toast.LENGTH_SHORT).show();
+                        ContentFragment fragment = new ContentFragment();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_contentframe,fragment);
+                        fragmentTransaction.commit();
                         return true;
+
+                    // For rest of the options we just show a toast on click
+
                     case R.id.starred:
-                        Snackbar.make(mContentFrame, "Item Two", Snackbar.LENGTH_SHORT).show();
-                        mCurrentSelectedPosition = 1;
+                        Toast.makeText(getApplicationContext(),"Stared Selected",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.sent_mail:
+                        Toast.makeText(getApplicationContext(),"Send Selected",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.drafts:
+                        Toast.makeText(getApplicationContext(),"Drafts Selected",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.allmail:
+                        Toast.makeText(getApplicationContext(),"All Mail Selected",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.trash:
+                        Toast.makeText(getApplicationContext(),"Trash Selected",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.spam:
+                        Toast.makeText(getApplicationContext(),"Spam Selected",Toast.LENGTH_SHORT).show();
                         return true;
                     default:
+                        Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
                         return true;
+
                 }
             }
         });
 
+        // Initializing Drawer Layout and ActionBarToggle
+        drawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name, R.string.app_name){
 
-        //test ----- END
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
 
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
+        //Navigation Drawer ----- END
     }
-
-    //test ----- START
-    private void setUpToolbar() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-        }
-    }
-
-    //to customize the action bar
-    private void setUpNavDrawer() {
-        if (mToolbar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            mToolbar.setNavigationIcon(R.drawable.ic_launcher);
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mDrawerLayout.openDrawer(GravityCompat.START);
-                }
-            });
-        }
-    }
-
-    public static String readSharedSetting(Context ctx, String settingName, String defaultValue) {
-        SharedPreferences sharedPref = ctx.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
-        return sharedPref.getString(settingName, defaultValue);
-    }
-    //test ----- END
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

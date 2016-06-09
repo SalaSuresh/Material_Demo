@@ -1,5 +1,8 @@
 package com.syntax.material_demo;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initial Fragment ----- START
+        Fragment fr = new MainFragmest();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.nav_contentframe, fr);
+        fragmentTransaction.commit();
+        //Initial Fragment ----- END
+
         //Navigation Drawer ----- START
         // Initializing Toolbar and setting it as the actionbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -40,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //Checking if the item is in checked state or not, if not make it in checked state
-                if(menuItem.isChecked()) menuItem.setChecked(false);
-                else menuItem.setChecked(true);
-
+//                if(menuItem.isChecked()) menuItem.setChecked(false);
+//                else menuItem.setChecked(true);
+                menuItem.setChecked(true);
                 //Closing drawer on item click
                 drawerLayout.closeDrawers();
 
@@ -53,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
                     //Replacing the main content with NotificationsFragmest Which is our Inbox View;
                     case R.id.notifications:
                         Toast.makeText(getApplicationContext(),"Notifications Selected",Toast.LENGTH_SHORT).show();
-                        NotificationsFragmest fragment = new NotificationsFragmest();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_contentframe,fragment);
+                        Fragment fr = new NotificationsFragmest();
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_contentframe, fr);
                         fragmentTransaction.commit();
                         return true;
 

@@ -4,10 +4,10 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/inbox"
+            android:id="@+id/notifications"
             android:checked="false"
-            android:icon="@drawable/ic_launcher"
-            android:title="@string/app_name" />
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="Notifications" />
 
         <item
             android:id="@+id/starred"

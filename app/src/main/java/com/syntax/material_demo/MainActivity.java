@@ -1,25 +1,15 @@
 package com.syntax.material_demo;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()){
 
 
-                    //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.inbox:
-                        Toast.makeText(getApplicationContext(),"Inbox Selected",Toast.LENGTH_SHORT).show();
-                        ContentFragment fragment = new ContentFragment();
+                    //Replacing the main content with NotificationsFragmest Which is our Inbox View;
+                    case R.id.notifications:
+                        Toast.makeText(getApplicationContext(),"Notifications Selected",Toast.LENGTH_SHORT).show();
+                        NotificationsFragmest fragment = new NotificationsFragmest();
                         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_contentframe,fragment);
                         fragmentTransaction.commit();

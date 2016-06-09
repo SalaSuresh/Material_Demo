@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 /**
  * Created by sures on 6/8/2016.
  */
-public class ContentFragment extends Fragment {
+public class NotificationsFragmest extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.content_fragment,container,false);
+        View v = inflater.inflate(R.layout.notifications_fragment,container,false);
         return v;
     }
 }

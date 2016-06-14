@@ -64,22 +64,24 @@ public class MainActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()){
 
-
-                    //Replacing the main content with NotificationsFragmest Which is our Inbox View;
-                    case R.id.notifications:
-                        Toast.makeText(getApplicationContext(),"Notifications Selected",Toast.LENGTH_SHORT).show();
-                        Fragment fr = new NotificationsFragmest();
+                    case R.id.home:
+                        Toast.makeText(getApplicationContext(),"Home Selected",Toast.LENGTH_SHORT).show();
+                        Fragment fr = new MainFragmest();
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fm.beginTransaction();
                         fragmentTransaction.replace(R.id.nav_contentframe, fr);
                         fragmentTransaction.commit();
                         return true;
 
-                    // For rest of the options we just show a toast on click
-
-                    case R.id.starred:
-                        Toast.makeText(getApplicationContext(),"Stared Selected",Toast.LENGTH_SHORT).show();
+                    case R.id.notifications:
+                        Toast.makeText(getApplicationContext(),"Notifications Selected",Toast.LENGTH_SHORT).show();
+                        Fragment fr_notification = new NotificationsFragmest();
+                        FragmentManager fm_notification = getFragmentManager();
+                        FragmentTransaction fragmentTransaction_notification = fm_notification.beginTransaction();
+                        fragmentTransaction_notification.replace(R.id.nav_contentframe, fr_notification);
+                        fragmentTransaction_notification.commit();
                         return true;
+
                     case R.id.sent_mail:
                         Toast.makeText(getApplicationContext(),"Send Selected",Toast.LENGTH_SHORT).show();
                         return true;

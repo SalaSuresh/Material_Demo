@@ -44,11 +44,11 @@ public class MainFragmest extends Fragment {
                 R.drawable.image_4,
                 R.drawable.image_5};
         int[] backgroundcolor = {
-                0xFF101010,
-                0xFF202020,
-                0xFF303030,
-                0xFF404040,
-                0xFF505050};
+                R.color.colorAccent,
+                R.color.colorPrimary,
+                R.color.colorPrimaryDark,
+                R.color.cardview_dark_background,
+                R.color.cardview_light_background};
 
         @Override
         public int getCount() {
@@ -73,14 +73,14 @@ public class MainFragmest extends Fragment {
             ImageView imageView = new ImageView(getActivity());
             imageView.setImageResource(res[position]);
             ViewGroup.LayoutParams imageParams = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
             imageView.setLayoutParams(imageParams);
 
             LinearLayout layout = new LinearLayout(getActivity());
             layout.setOrientation(LinearLayout.VERTICAL);
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//            layout.setBackgroundColor(backgroundcolor[position]);
+                    ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+            layout.setBackgroundColor(backgroundcolor[position]);
             layout.setLayoutParams(layoutParams);
 //            layout.addView(textView);
             layout.addView(imageView);

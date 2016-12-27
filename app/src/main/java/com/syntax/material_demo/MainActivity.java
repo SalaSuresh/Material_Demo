@@ -75,16 +75,22 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.notifications:
                         Toast.makeText(getApplicationContext(),"Notifications Selected",Toast.LENGTH_SHORT).show();
-                        Fragment fr_notification = new NotificationsFragmest();
-                        FragmentManager fm_notification = getFragmentManager();
-                        FragmentTransaction fragmentTransaction_notification = fm_notification.beginTransaction();
-                        fragmentTransaction_notification.replace(R.id.nav_contentframe, fr_notification);
-                        fragmentTransaction_notification.commit();
+                        Fragment fragment_Notifications = new NotificationsFragmest();
+                        FragmentManager fragmentManager_notification = getFragmentManager();
+                        FragmentTransaction fragmentTransaction_Notification = fragmentManager_notification.beginTransaction();
+                        fragmentTransaction_Notification.replace(R.id.nav_contentframe, fragment_Notifications);
+                        fragmentTransaction_Notification.commit();
                         return true;
 
-                    case R.id.sent_mail:
-                        Toast.makeText(getApplicationContext(),"Send Selected",Toast.LENGTH_SHORT).show();
+                    case R.id.introduction:
+                        Toast.makeText(getApplicationContext(),"Introduction Selected",Toast.LENGTH_SHORT).show();
+                        Fragment fragment_Introduction = new IntroductionFragment();
+                        FragmentManager fragmentManager_Introduction = getFragmentManager();
+                        FragmentTransaction fragmentTransaction_Introduction = fragmentManager_Introduction.beginTransaction();
+                        fragmentTransaction_Introduction.replace(R.id.nav_contentframe, fragment_Introduction);
+                        fragmentTransaction_Introduction.commit();
                         return true;
+
                     case R.id.drafts:
                         Toast.makeText(getApplicationContext(),"Drafts Selected",Toast.LENGTH_SHORT).show();
                         return true;

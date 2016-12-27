@@ -16,10 +16,10 @@
             android:title="Notifications" />
 
         <item
-            android:id="@+id/sent_mail"
+            android:id="@+id/introduction"
             android:checked="false"
             android:icon="@drawable/ic_launcher"
-            android:title="@string/app_name" />
+            android:title="Introduction" />
 
         <item
             android:id="@+id/drafts"
@@ -27,17 +27,18 @@
             android:icon="@drawable/ic_launcher"
             android:title="@string/app_name" />
 
-
         <item
             android:id="@+id/allmail"
             android:checked="false"
             android:icon="@drawable/ic_launcher"
             android:title="@string/app_name" />
+
         <item
             android:id="@+id/trash"
             android:checked="false"
             android:icon="@drawable/ic_launcher"
             android:title="@string/app_name" />
+
         <item
             android:id="@+id/spam"
             android:checked="false"

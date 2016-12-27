@@ -56,7 +56,7 @@ public class NotificationsFragmest extends Fragment {
                 mBuilder.setContentIntent(resultPendingIntent);
                 NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                 // mId allows you to update the notification later on.
-                mNotificationManager.notify(1016, mBuilder.build());
+                mNotificationManager.notify(0, mBuilder.build());
             }
         });
 

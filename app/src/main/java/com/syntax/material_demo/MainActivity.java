@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -119,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
 //        headerView.findViewById(R.id.navigation_header_text);
         textView_UserName = (TextView) headerView.findViewById(R.id.username);
         textView_UserName.setText("Sala Suresh..");
+
+        ImageView imageView_ProfilePic = (ImageView) headerView.findViewById(R.id.profile_image);
+        imageView_ProfilePic.setImageDrawable(getResources().getDrawable(R.drawable.icon));
 
         // Initializing Drawer Layout and ActionBarToggle
         drawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);

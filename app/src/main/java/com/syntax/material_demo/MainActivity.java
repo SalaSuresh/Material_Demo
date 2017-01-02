@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /*
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+
+    TextView textView_UserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Navigation Header
+        View headerView = navigationView.inflateHeaderView(R.layout.drawer_header);
+//        headerView.findViewById(R.id.navigation_header_text);
+        textView_UserName = (TextView) headerView.findViewById(R.id.username);
+        textView_UserName.setText("Sala Suresh..");
 
         // Initializing Drawer Layout and ActionBarToggle
         drawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
